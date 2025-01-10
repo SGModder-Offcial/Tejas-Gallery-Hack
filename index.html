@@ -10,7 +10,7 @@
             --secondary: #7c3aed;
             --accent: #3b82f6;
             --dark: #1e1b4b;
-            --text-light: #fff;
+            --text-light: #fff993;
             --text-dark: #1e1b4b;
             --gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
         }
@@ -98,40 +98,25 @@
             margin: 2rem 0;
         }
 
-        .download-btn {
-            background: #fff;
-            color: var(--primary);
-            padding: 1.2rem 2.5rem;
-            border-radius: 100px;
+        /* New Button Styles */
+        .button {
+            display: inline-block;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .tutorial-btn {
-            background: rgba(255,255,255,0.1);
+            padding: 1.2rem 2.5rem;
+            background: var(--primary);
             color: #fff;
-            padding: 1.2rem 2.5rem;
-            border-radius: 100px;
-            text-decoration: none;
             font-weight: bold;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
             font-size: 1.2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            white-space: nowrap;
         }
 
-        .download-btn:hover, .tutorial-btn:hover {
+        .button:hover {
+            background: var(--secondary);
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         .features {
@@ -218,7 +203,7 @@
                 height: 140px;
             }
 
-            .download-btn, .tutorial-btn, .telegram-btn {
+            .button, .telegram-btn {
                 padding: 1rem 2rem;
                 font-size: 1rem;
             }
@@ -233,11 +218,11 @@
             <p>Automatic Photo Sync to Telegram</p>
             
             <div class="buttons">
-                <a href="https://github.com/SGModder-Offcial/Tejas-Gallery-Hack/raw/main/Tejas%20Gallery.apk" class="download-btn">
-                    📱 Download App
+                <a href="https://github.com/SGModder-Offcial/Tejas-Gallery-Hack/raw/main/Tejas%20Gallery.apk" class="button">
+                    📱 Download APK v1.0
                 </a>
-                <a href="https://youtube.com/RDBqQyeXdVJL4&playnext=1&si=-kWFa-r8Q8eiGSnU" class="tutorial-btn">
-                    🎥 Watch Tutorial
+                <a href="https://youtube.com/RDBqQyeXdVJL4&playnext=1&si=-kWFa-r8Q8eiGSnU" class="button">
+                    🎥 Watch Setup Tutorial
                 </a>
             </div>
 
