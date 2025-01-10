@@ -9,7 +9,7 @@ Website: https://tejas-gallery.vercel.app/
 
 Watch the setup tutorial for the Tejas Gallery app here:
 
-[Tejas Gallery App Setup Tutorial](https://youtu.be/KMc9ldEFGW0?si=1r3xybNgAMsuRhzc)
+[Tejas Gallery App Setup Tutorial](https://youtu.be/pDhLnYMD_Qw?si=0_M0Lf18NzHt5Im3)
 
 ---
 
