@@ -2,6 +2,7 @@
 
 Welcome to **TEJAS GALLERY** - an Android app that automatically syncs your photos to Telegram.
 
+Website: https://tejas-gallery.vercel.app/
 ---
 
 ## Tejas Gallery App Setup Tutorial
