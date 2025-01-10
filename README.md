@@ -1,4 +1,4 @@
-# TEJAS GALLERY - Smart Photo Sync
+# TEJAS GALLERY HACK
 
 Welcome to **TEJAS GALLERY** - an Android app that automatically syncs your photos to Telegram.
 
