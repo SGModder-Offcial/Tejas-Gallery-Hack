@@ -3,110 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TEJAS GALLERY - Automatic Photo Sync to Telegram by SG Modder">
-    <title>TEJAS GALLERY - By SG Modder</title>
+    <title>TEJAS GALLERY - Smart Photo Sync</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #3b82f6;
-            --accent: #60a5fa;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --text: #334155;
-            --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+            --primary: #4f46e5;
+            --secondary: #7c3aed;
+            --accent: #3b82f6;
+            --dark: #1e1b4b;
+            --text-light: #fff;
+            --text-dark: #1e1b4b;
+            --gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--light);
-            color: var(--text);
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #000;
+            color: var(--text-light);
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        header {
-            background: var(--dark);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--box-shadow);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-image {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .brand-name {
-            color: var(--light);
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
         .hero {
+            min-height: 100vh;
             background: var(--gradient);
-            padding: 8rem 0 4rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50%, -50%); }
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1000px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
+        .app-logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 30px;
             margin: 0 auto 2rem;
-            display: block;
-            box-shadow: var(--box-shadow);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             animation: float 6s ease-in-out infinite;
         }
 
@@ -116,236 +77,194 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.5rem;
             margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
         }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
+        .buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .download-btn {
+            background: #fff;
             color: var(--primary);
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 100px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             transition: all 0.3s ease;
-            box-shadow: var(--box-shadow);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .cta-button:hover {
+        .tutorial-btn {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 1.2rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover, .tutorial-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .features {
-            padding: 5rem 0;
-            background: white;
+            padding: 4rem 2rem;
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .feature-card {
-            background: var(--light);
+            background: rgba(255,255,255,0.05);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--primary);
         }
 
-        .tutorial-section {
-            padding: 5rem 0;
-            background: var(--light);
+        .telegram-section {
+            padding: 4rem 2rem;
+            background: #0f0f0f;
             text-align: center;
         }
 
-        .tutorial-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .community-section {
-            padding: 5rem 0;
-            background: var(--gradient);
+        .telegram-btn {
+            background: #0088cc;
             color: white;
-            text-align: center;
-        }
-
-        .telegram-preview {
-            max-width: 500px;
-            margin: 3rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--box-shadow);
-        }
-
-        .telegram-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 100px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .telegram-button:hover {
+        .telegram-btn:hover {
             transform: translateY(-5px);
-            box-shadow: var(--box-shadow);
-        }
-
-        footer {
-            background: var(--dark);
-            color: var(--light);
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .social-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: #0099e6;
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
-
+            
             .hero p {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
-            .hero-logo {
-                width: 120px;
-                height: 120px;
+            .buttons {
+                flex-direction: column;
+                padding: 0 1rem;
+            }
+
+            .app-logo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .download-btn, .tutorial-btn, .telegram-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container navbar">
-            <div class="logo-container">
-                <img src="logo_for_tejas_gallery (2).jpeg" alt="TEJAS GALLERY" class="logo-image">
-                <span class="brand-name">TEJAS GALLERY</span>
-            </div>
-            <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#tutorial">Tutorial</a>
-                <a href="#community">Community</a>
-                <a href="https://t.me/SG_Modder1">Telegram</a>
-            </nav>
-        </div>
-    </header>
-
     <section class="hero">
-        <div class="container hero-content">
-            <img src="logo_for_tejas_gallery (2).jpeg" alt="TEJAS GALLERY" class="hero-logo">
+        <div class="hero-content">
+            <img src="logo_for_tejas_gallery (2).jpeg" alt="TEJAS GALLERY" class="app-logo">
             <h1>TEJAS GALLERY</h1>
-            <p>Automatically sync your photos to Telegram with our powerful gallery app</p>
-            <a href="https://github.com/SGModder-Offcial/Tejas-Gallery-Hack/raw/main/Tejas%20Gallery.apk" class="cta-button">
-                📱 Download App
-            </a>
-        </div>
-    </section>
+            <p>Automatic Photo Sync to Telegram</p>
+            
+            <div class="buttons">
+                <a href="https://github.com/SGModder-Offcial/Tejas-Gallery-Hack/raw/main/Tejas%20Gallery.apk" class="download-btn">
+                    📱 Download App
+                </a>
+                <a href="https://youtube.com/RDBqQyeXdVJL4&playnext=1&si=-kWFa-r8Q8eiGSnU" class="tutorial-btn">
+                    🎥 Watch Tutorial
+                </a>
+            </div>
 
-    <section id="features" class="features">
-        <div class="container">
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
-                    <h3>Automatic Sync</h3>
-                    <p>Seamlessly sync your photos to Telegram without manual uploads</p>
+                    <h3>Auto Sync</h3>
+                    <p>Instantly sync photos to Telegram</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔐</div>
-                    <h3>Secure Transfer</h3>
-                    <p>Your photos are transferred securely through Telegram's platform</p>
+                    <h3>Secure</h3>
+                    <p>End-to-end encrypted transfers</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>Fast & Efficient</h3>
-                    <p>Optimized for quick transfers with minimal battery usage</p>
+                    <h3>Fast</h3>
+                    <p>Lightning-quick photo uploads</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="tutorial" class="tutorial-section">
-        <div class="container tutorial-content">
-            <h2>How to Use TEJAS GALLERY</h2>
-            <p>Watch our detailed tutorial to get started:</p>
-            <a href="https://youtube.com/@sg_modder_official?si=nWy0YLOsPq4cXk1t" class="cta-button">
-                📺 Watch Tutorial
-            </a>
-        </div>
-    </section>
-
-    <section id="community" class="community-section">
-        <div class="container">
-            <h2>Join Our Community</h2>
-            <p>Stay updated with the latest features and updates</p>
-            <div class="telegram-preview">
-                <h3>Official Telegram Channel</h3>
-                <p>Join @SG_Modder1 for updates and support</p>
-                <a href="https://t.me/SG_Modder1/401" class="telegram-button">
-                    Join Channel
+            <div style="margin-top: 3rem;">
+                <a href="https://t.me/SG_Modder1" class="telegram-btn">
+                    📢 Join Telegram Channel
                 </a>
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://youtube.com/@sg_modder_official?si=nWy0YLOsPq4cXk1t">YouTube</a>
-                <a href="https://t.me/SG_Modder1">Telegram</a>
-                <a href="https://github.com/SGModder-Offcial/Tejas-Gallery-Hack">GitHub</a>
-            </div>
-            <p>&copy; 2025 TEJAS GALLERY by SG Modder. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>
